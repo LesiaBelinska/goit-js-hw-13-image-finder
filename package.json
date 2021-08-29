@@ -26,6 +26,7 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
-    "animated-scroll-to": "^2.2.0"
+    "animated-scroll-to": "^2.2.0",
+    "basiclightbox": "^5.0.4"
   }
 }
