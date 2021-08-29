@@ -4,9 +4,9 @@ import animateScrollTo from 'animated-scroll-to';
 import { onOpenModal } from './modal';
 
 const formSearch = document.querySelector('#search-form');
-const articlesContainer = document.querySelector('.gallery');
+const articlesContainer = document.querySelector('.gallery-js');
 const loadMoreBtn = document.querySelector('[data-action="load-more"]');
-const noResultMessage = document.querySelector('.no-result');
+const noResultMessage = document.querySelector('.no-result-js');
 
 formSearch.addEventListener('submit', onSearch);
 loadMoreBtn.addEventListener('click', onLoadMore);
@@ -38,7 +38,7 @@ async function onSearch(event) {
       loadMoreBtn.classList.add('is-hidden');
     }
   } catch (error) {
-    console.log('Ошибка');
+    console.log('Error');
   }
 }
 
@@ -50,7 +50,7 @@ async function onLoadMore() {
     appendArticlesMarkup(response);
     scrollToElement();
   } catch (error) {
-    console.log('Ошибка');
+    console.log('Error');
   }
 }
 
