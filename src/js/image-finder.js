@@ -6,7 +6,7 @@ import { onOpenModal } from './modal';
 const formSearch = document.querySelector('#search-form');
 const articlesContainer = document.querySelector('.gallery-js');
 const loadMoreBtn = document.querySelector('[data-action="load-more"]');
-const noResultMessage = document.querySelector('.no-result-js');
+
 
 formSearch.addEventListener('submit', onSearch);
 loadMoreBtn.addEventListener('click', onLoadMore);
@@ -18,7 +18,6 @@ async function onSearch(event) {
   event.preventDefault();
 
   try {
-    noResultMessage.classList.add('is-hidden');
     const inputSearchValue = event.currentTarget.elements.query.value;
     imageApiService.query = inputSearchValue;
 
@@ -28,9 +27,7 @@ async function onSearch(event) {
     clearArticlesContainer();
     const response = await imageApiService.fetchImages();
 
-    if (response.length === 0) {
-      noResultMessage.classList.remove('is-hidden');
-    } else if (response.length > 0) {
+    if (response.length > 0) {
       appendArticlesMarkup(response);
       loadMoreBtn.classList.remove('is-hidden');
     }
