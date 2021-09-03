@@ -2,6 +2,10 @@ import ImageApiService from './apiService';
 import photoCard from '../templates/galleryItems.hbs';
 import animateScrollTo from 'animated-scroll-to';
 import { onOpenModal } from './modal';
+import { error } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+
 
 const formSearch = document.querySelector('#search-form');
 const articlesContainer = document.querySelector('.gallery-js');
@@ -27,7 +31,10 @@ async function onSearch(event) {
     clearArticlesContainer();
     const response = await imageApiService.fetchImages();
 
-    if (response.length > 0) {
+    if (response.length === 0) {
+       noResult();
+    }
+    else if (response.length > 0) {
       appendArticlesMarkup(response);
       loadMoreBtn.classList.remove('is-hidden');
     }
@@ -68,4 +75,12 @@ function scrollToElement() {
   };
 
   animateScrollTo(itemToScroll, options);
+}
+
+function noResult() {
+  error({
+    text: 'No matches found!',
+    delay: 1500,
+    closerHover: true,
+  });
 }
